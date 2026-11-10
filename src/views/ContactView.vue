@@ -12,7 +12,6 @@ const serviceOptions = [
   { value: "autre", label: "Autre" },
 ];
 
-/* Pre-select the service from ?service=<slug>, only when it is a known slug. */
 const initialService = computed(() => {
   const raw = route.query.service;
   const slug = Array.isArray(raw) ? raw[0] : raw;
@@ -42,7 +41,9 @@ const promises = [
     />
 
     <section class="pt-2 pb-20 lg:pb-28" aria-labelledby="contact-title">
-      <div class="shell grid gap-14 border-t border-line pt-12 lg:grid-cols-12 lg:gap-20 lg:pt-16">
+      <div
+        class="shell grid gap-14 border-t border-line pt-12 lg:grid-cols-12 lg:gap-20 lg:pt-16"
+      >
         <div class="lg:col-span-5">
           <div class="lg:sticky lg:top-32">
             <h2 id="contact-title" v-reveal>Contact direct</h2>
@@ -68,7 +69,7 @@ const promises = [
                 rel="noopener noreferrer"
                 class="link inline-flex items-center gap-2 font-medium"
               >
-                Instagram @adisociete
+                LinkedIn @adisociete
                 <span class="sr-only">(s’ouvre dans un nouvel onglet)</span>
                 <svg
                   viewBox="0 0 24 24"
