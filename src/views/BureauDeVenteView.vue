@@ -16,7 +16,6 @@ const heroImage = '/images/bureau/img_3491.jpg'
 const heroAlt =
   'Espace de vente à deux niveaux, enseigne et bandeau bleu roi, grandes baies vitrées et visuel du programme en façade'
 
-/* With three extra photos, the last one spans the full row. */
 function isWide(index: number, total: number) {
   return total === 3 && index === 2
 }
@@ -34,7 +33,6 @@ function isWide(index: number, total: number) {
       <RouterLink to="/contact" class="btn btn-primary">Demander un devis</RouterLink>
     </PageHero>
 
-    <!-- Intro -->
     <section class="py-16 lg:py-24" aria-labelledby="intro-title">
       <div class="shell grid gap-10 lg:grid-cols-12 lg:gap-16">
         <h2 id="intro-title" v-reveal class="lg:col-span-6">
@@ -55,7 +53,6 @@ function isWide(index: number, total: number) {
       </div>
     </section>
 
-    <!-- Qualities -->
     <section class="bg-paper-deep py-20 lg:py-28" aria-labelledby="qualities-title">
       <div class="shell">
         <SectionHeading
@@ -68,7 +65,6 @@ function isWide(index: number, total: number) {
       </div>
     </section>
 
-    <!-- Illustrated services -->
     <section class="py-20 lg:py-28" aria-labelledby="services-title">
       <div class="shell">
         <h2 id="services-title" v-reveal>De la construction à l’entretien</h2>
@@ -144,7 +140,6 @@ function isWide(index: number, total: number) {
       </div>
     </section>
 
-    <!-- Other services -->
     <section class="border-t border-line py-20 lg:py-28" aria-labelledby="support-title">
       <div class="shell">
         <SectionHeading id="support-title" title="Le quotidien de vos espaces, pris en charge" />
@@ -160,7 +155,6 @@ function isWide(index: number, total: number) {
       </div>
     </section>
 
-    <!-- Mobile sales office -->
     <section class="bg-ink text-paper" aria-labelledby="mobile-title">
       <div class="shell grid items-center gap-10 py-16 lg:grid-cols-12 lg:gap-16 lg:py-24">
         <div class="lg:col-span-5">

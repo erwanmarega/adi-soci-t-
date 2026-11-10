@@ -101,7 +101,6 @@ const promises = [
           </div>
         </div>
 
-        <!-- Quote form -->
         <div class="lg:col-span-7">
           <div v-reveal>
             <h2>Demander un devis</h2>

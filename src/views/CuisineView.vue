@@ -26,7 +26,6 @@ import {
       <RouterLink to="/contact" class="btn btn-primary">Demander un devis</RouterLink>
     </PageHero>
 
-    <!-- Engagements -->
     <section class="py-16 lg:py-24" aria-labelledby="engagements-title">
       <div class="shell grid gap-12 lg:grid-cols-12 lg:gap-16">
         <div class="lg:col-span-7">
@@ -52,7 +51,6 @@ import {
       </div>
     </section>
 
-    <!-- Process -->
     <section class="bg-paper-deep py-20 lg:py-28" aria-labelledby="process-title">
       <div class="shell">
         <SectionHeading id="process-title" title="De la conception à la satisfaction" />
@@ -62,7 +60,6 @@ import {
       </div>
     </section>
 
-    <!-- Gallery -->
     <section class="py-20 lg:py-28" aria-labelledby="gallery-title">
       <div class="shell">
         <SectionHeading id="gallery-title" title="Des cuisines installées pour vos programmes" />

@@ -2,10 +2,6 @@ import type { Directive } from 'vue'
 
 const observers = new WeakMap<HTMLElement, IntersectionObserver>()
 
-/**
- * v-reveal: fades and lifts an element in once it enters the viewport.
- * Optional numeric value = delay in milliseconds.
- */
 export const reveal: Directive<HTMLElement, number | undefined> = {
   mounted(el, binding) {
     el.classList.add('reveal')

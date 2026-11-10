@@ -45,7 +45,6 @@ onBeforeUnmount(() => observer?.disconnect())
       image-alt="Palissade de chantier imprimée annonçant un programme immobilier à Paris, avec perspectives de terrasses"
     />
 
-    <!-- Sticky in-page index (desktop) -->
     <nav
       class="sticky top-20 z-40 hidden border-y border-line bg-paper/95 backdrop-blur lg:block"
       aria-label="Sur cette page"
@@ -69,7 +68,6 @@ onBeforeUnmount(() => observer?.disconnect())
       </ul>
     </nav>
 
-    <!-- Permis de construire -->
     <section :id="permis.id" class="scroll-mt-36 py-16 lg:py-24" :aria-labelledby="`${permis.id}-title`">
       <div class="shell">
         <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
@@ -122,7 +120,6 @@ onBeforeUnmount(() => observer?.disconnect())
       </div>
     </section>
 
-    <!-- Palissade -->
     <section :id="palissade.id" class="scroll-mt-36 bg-paper-deep py-20 lg:py-28" :aria-labelledby="`${palissade.id}-title`">
       <div class="shell">
         <div class="grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-16">
@@ -143,7 +140,6 @@ onBeforeUnmount(() => observer?.disconnect())
       </div>
     </section>
 
-    <!-- Bâche -->
     <section :id="bache.id" class="scroll-mt-36 py-20 lg:py-28" :aria-labelledby="`${bache.id}-title`">
       <div class="shell">
         <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
@@ -163,7 +159,6 @@ onBeforeUnmount(() => observer?.disconnect())
       </div>
     </section>
 
-    <!-- Kakémono -->
     <section :id="kakemono.id" class="scroll-mt-36 bg-paper-deep py-20 lg:py-28" :aria-labelledby="`${kakemono.id}-title`">
       <div class="shell">
         <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
@@ -198,7 +193,6 @@ onBeforeUnmount(() => observer?.disconnect())
       </div>
     </section>
 
-    <!-- Covering -->
     <section :id="covering.id" class="scroll-mt-36 py-20 lg:py-28" :aria-labelledby="`${covering.id}-title`">
       <div class="shell">
         <div class="grid gap-8 lg:grid-cols-12 lg:gap-16">

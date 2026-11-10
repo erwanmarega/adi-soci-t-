@@ -3,12 +3,6 @@
 @import '@fontsource-variable/cormorant-garamond/wght-italic.css';
 @import '@fontsource-variable/instrument-sans';
 
-/*
- * ADI design system.
- * Quiet interior-design magazine: white paper, near-black ink, fine 1px rules,
- * a serif for headings. The ADI magenta is reserved for the primary CTA, link
- * hover/underline, focus ring and the active nav/tab state.
- */
 @theme {
   --font-display: 'Cormorant Garamond Variable', Georgia, serif;
   --font-sans: 'Instrument Sans Variable', ui-sans-serif, system-ui, sans-serif;
@@ -87,12 +81,10 @@
 }
 
 @layer components {
-  /* Page gutter + max width used by every section. */
   .shell {
     @apply mx-auto w-full max-w-[88rem] px-5 sm:px-8 lg:px-14;
   }
 
-  /* Small plain label (page category, "Nouveau" tag). No rule, no tracking. */
   .eyebrow {
     @apply text-sm font-medium text-slate;
   }
@@ -110,13 +102,11 @@
     @apply border border-ink/40 text-ink hover:border-ink hover:bg-ink hover:text-paper;
   }
 
-  /* Text link: thin underline, magenta on hover. */
   .link {
     @apply underline decoration-ink/30 underline-offset-[0.35em] transition-colors duration-300 hover:text-accent hover:decoration-accent;
   }
 }
 
-/* Scroll reveal, driven by the v-reveal directive. */
 .reveal {
   opacity: 0;
   transform: translateY(1rem);

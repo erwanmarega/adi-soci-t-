@@ -15,7 +15,6 @@ async function playVideo() {
   videoFrame.value?.focus()
 }
 
-/* Real projects, captions taken from the bureau / supports data. */
 const projects = [
   {
     src: '/images/bureau/savana_studio_bv_icade_nanterre.jpg',
@@ -53,7 +52,6 @@ const projects = [
 </script>
 <template>
   <div>
-    <!-- Hero: one large photograph, then an editorial two-column block -->
     <section aria-labelledby="hero-title">
       <div class="h-[58vh] min-h-[22rem] w-full overflow-hidden bg-paper-deep lg:h-[74vh] lg:max-h-[56rem]">
         <img
@@ -85,7 +83,6 @@ const projects = [
       </div>
     </section>
 
-    <!-- Clients -->
     <section class="border-y border-line py-10 lg:py-12" aria-labelledby="clients-title">
       <div class="shell grid gap-5 lg:grid-cols-12 lg:items-baseline lg:gap-10">
         <h2 id="clients-title" v-reveal class="eyebrow !font-sans lg:col-span-3">
@@ -99,7 +96,6 @@ const projects = [
       </div>
     </section>
 
-    <!-- Projects -->
     <section class="py-20 lg:py-28" aria-labelledby="projects-title">
       <div class="shell">
         <div class="flex flex-wrap items-end justify-between gap-4">
@@ -134,7 +130,6 @@ const projects = [
       </div>
     </section>
 
-    <!-- Services -->
     <section class="pb-20 lg:pb-28" aria-labelledby="services-title">
       <div class="shell">
         <div class="grid gap-6 lg:grid-cols-12 lg:items-end lg:gap-10">
@@ -175,7 +170,6 @@ const projects = [
       </div>
     </section>
 
-    <!-- Mobile sales office -->
     <section class="bg-paper-deep" aria-labelledby="news-title">
       <div class="shell grid items-center gap-10 py-16 lg:grid-cols-12 lg:gap-16 lg:py-24">
         <div class="lg:col-span-5">
@@ -199,7 +193,6 @@ const projects = [
       </div>
     </section>
 
-    <!-- About + video -->
     <section class="py-20 lg:py-28" aria-labelledby="about-title">
       <div class="shell">
         <h2 id="about-title" v-reveal class="max-w-[28ch]">
@@ -271,7 +264,6 @@ const projects = [
       </div>
     </section>
 
-    <!-- Values -->
     <section class="border-t border-line py-20 lg:py-28" aria-labelledby="values-title">
       <div class="shell">
         <SectionHeading id="values-title" title="Ce qui guide notre travail au quotidien" />

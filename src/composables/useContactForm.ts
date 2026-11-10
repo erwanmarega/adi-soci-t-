@@ -15,7 +15,6 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 const PHONE_RE = /^\+?[\d\s().-]{6,30}$/
 const REQUEST_TIMEOUT_MS = 15000
 
-/** Returns the endpoint only when it is a well-formed https URL. */
 function readEndpoint(): string | null {
   const raw = import.meta.env.VITE_CONTACT_ENDPOINT
   if (typeof raw !== 'string' || raw.trim() === '') return null
@@ -39,7 +38,6 @@ export function useContactForm(options: { serviceLabel: (value: string) => strin
     service: '',
     message: '',
     consent: false,
-    /** Honeypot: real users never see or fill this field. */
     website: '',
   })
 
@@ -98,7 +96,6 @@ export function useContactForm(options: { serviceLabel: (value: string) => strin
     values.website = ''
   }
 
-  /** Returns the first invalid field (to focus), or null. */
   async function submit(): Promise<ContactField | null> {
     if (isSending.value) return null
 
@@ -108,7 +105,6 @@ export function useContactForm(options: { serviceLabel: (value: string) => strin
       return firstInvalid
     }
 
-    // Bots fill the hidden field: acknowledge silently without sending anything.
     if (values.website.trim() !== '') {
       status.value = 'success'
       reset()

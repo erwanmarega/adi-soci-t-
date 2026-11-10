@@ -43,7 +43,6 @@ export const bureauQualities = [
   },
 ]
 
-/* The three services illustrated by photos, rendered as alternating editorial blocks. */
 export const bureauServices: BureauService[] = [
   {
     slug: 'construction',
@@ -155,7 +154,6 @@ export const bureauServices: BureauService[] = [
   },
 ]
 
-/* Text-only services. */
 export const bureauOtherServices = [
   {
     title: 'Transport et stockage',

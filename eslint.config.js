@@ -17,11 +17,9 @@ export default defineConfig([
   {
     files: ['**/*.{ts,vue,js}'],
     rules: {
-      // TypeScript already reports undefined identifiers.
       'no-undef': 'off',
       'vue/require-default-prop': 'off',
       'vue/multi-word-component-names': 'off',
-      // Formatting is handled by hand (no Prettier in this project): keep template rules to correctness only.
       'vue/max-attributes-per-line': 'off',
       'vue/singleline-html-element-content-newline': 'off',
       'vue/html-self-closing': 'off',

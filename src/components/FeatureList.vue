@@ -4,7 +4,6 @@ withDefaults(
     items: { title: string; text: string }[]
     columns?: 2 | 3 | 4
     tone?: 'ink' | 'paper'
-    /** Show 01/02/03 only for true step-by-step processes. */
     numbered?: boolean
   }>(),
   { columns: 3, tone: 'ink', numbered: false },

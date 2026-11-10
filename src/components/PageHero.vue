@@ -1,15 +1,12 @@
 <script setup lang="ts">
 withDefaults(
   defineProps<{
-    /** Service category, shown as a small plain label above the title. */
     eyebrow: string
     title: string
     lead?: string
     image: string
     imageAlt: string
-    /** CSS object-position of the hero photo. */
     imagePosition?: string
-    /** Keep the frame at least 2:1 at every breakpoint (for photos with a banner at the bottom). */
     wide?: boolean
   }>(),
   { imagePosition: 'center', wide: false },

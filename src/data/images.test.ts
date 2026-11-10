@@ -1,16 +1,13 @@
 import { describe, expect, it } from 'vitest'
 
-// Source files (raw text) whose /images/ references must exist under public/.
 const sources = import.meta.glob<string>(
   ['/src/data/*.ts', '/src/views/*.vue', '/src/components/*.vue', '!/src/**/*.test.ts'],
   { query: '?raw', import: 'default', eager: true },
 )
-// Every file present under public/images (keys look like /public/images/...).
 const publicFiles = new Set(
   Object.keys(import.meta.glob('/public/images/**/*')).map((p) => p.replace('/public', '')),
 )
 
-// Only full file references (with an extension); bare directory prefixes are built at runtime.
 const IMAGE_RE = /\/images\/[^'"`\s)]+\.[a-z0-9]+/gi
 
 describe('image references', () => {

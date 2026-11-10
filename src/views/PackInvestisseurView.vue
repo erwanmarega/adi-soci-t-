@@ -14,7 +14,6 @@ import {
   packStory,
 } from '@/data/pack'
 
-/* Video posters: real interior photos (the price sheets stay in the data, not as posters). */
 const posters = [
   '/images/temoin/20230313_113640.jpg',
   '/images/temoin/20230313_112719.jpg',
@@ -63,7 +62,6 @@ function onTabKeydown(event: KeyboardEvent) {
       </RouterLink>
     </PageHero>
 
-    <!-- Avant / après -->
     <section class="pt-4 pb-20 lg:pb-28" aria-labelledby="story-title">
       <div class="shell">
         <h2 id="story-title" class="sr-only">L’histoire de Pierre, avant et après ADI</h2>
@@ -89,7 +87,6 @@ function onTabKeydown(event: KeyboardEvent) {
       </div>
     </section>
 
-    <!-- ADI, c'est -->
     <section class="border-y border-line py-20 lg:py-28" aria-labelledby="adi-is-title">
       <div class="shell grid gap-10 lg:grid-cols-12 lg:gap-16">
         <h2 id="adi-is-title" v-reveal class="lg:col-span-5">ADI, c’est&nbsp;:</h2>
@@ -112,7 +109,6 @@ function onTabKeydown(event: KeyboardEvent) {
       </div>
     </section>
 
-    <!-- Steps -->
     <section class="bg-paper-deep py-20 lg:py-28" aria-labelledby="steps-title">
       <div class="shell">
         <SectionHeading id="steps-title" title="Du choix à la livraison, sans détour" />
@@ -122,7 +118,6 @@ function onTabKeydown(event: KeyboardEvent) {
       </div>
     </section>
 
-    <!-- Packs -->
     <section class="py-20 lg:py-28" aria-labelledby="packs-title">
       <div class="shell">
         <div class="grid gap-6 lg:grid-cols-12 lg:items-end lg:gap-10">

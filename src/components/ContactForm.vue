@@ -224,7 +224,6 @@ const errorText = "mt-2 text-sm font-medium text-accent-deep";
       </p>
     </div>
 
-    <!-- Honeypot: hidden from users and assistive technology. -->
     <div
       class="absolute -left-[9999px] h-0 w-0 overflow-hidden"
       aria-hidden="true"
@@ -276,7 +275,6 @@ const errorText = "mt-2 text-sm font-medium text-accent-deep";
       </button>
     </div>
 
-    <!-- Announcements (live regions stay in the DOM so updates are read out). -->
     <div
       aria-live="assertive"
       role="alert"

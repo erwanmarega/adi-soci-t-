@@ -1,6 +1,5 @@
 export interface PackOffer {
   name: string
-  /** Transcribed from the price sheet image. */
   priceFrom: string
   delivery: string
   installation: string
@@ -10,12 +9,7 @@ export interface PackSize {
   id: string
   label: string
   theme: string
-  /**
-   * Presentation video. These are hotlinked from the legacy site and are
-   * temporary: they should be self-hosted (e.g. under /public/videos) later.
-   */
   videoSrc: string
-  /** Price sheet image, used as the video poster. */
   priceImage: string
   offers: [PackOffer, PackOffer]
 }

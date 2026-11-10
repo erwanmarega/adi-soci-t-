@@ -26,7 +26,6 @@ const gallery = [
       <RouterLink to="/contact" class="btn btn-primary">Demander un devis</RouterLink>
     </PageHero>
 
-    <!-- Intro -->
     <section class="py-16 lg:py-24" aria-labelledby="intro-title">
       <div class="shell grid gap-8 lg:grid-cols-12 lg:gap-16">
         <h2
@@ -42,7 +41,6 @@ const gallery = [
       </div>
     </section>
 
-    <!-- Full-width photo -->
     <section aria-label="Salon d’un appartement témoin">
       <div class="shell">
         <div v-reveal class="overflow-hidden bg-paper-deep">
@@ -57,7 +55,6 @@ const gallery = [
       </div>
     </section>
 
-    <!-- Pull quote -->
     <section class="mt-20 bg-ink py-20 text-paper lg:mt-28 lg:py-28" aria-labelledby="quote-title">
       <div class="shell grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-16">
         <div class="lg:col-span-6">
@@ -83,7 +80,6 @@ const gallery = [
       </div>
     </section>
 
-    <!-- Gallery -->
     <section class="bg-paper-deep py-20 lg:py-28" aria-labelledby="gallery-title">
       <div class="shell">
         <SectionHeading

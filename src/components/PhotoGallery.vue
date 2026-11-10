@@ -16,7 +16,6 @@ const props = withDefaults(
   { layout: 'mosaic' },
 )
 
-/* Asymmetric span pattern for the mosaic grid (repeats every 7 tiles). */
 const spans = [
   'col-span-2 row-span-2',
   '',

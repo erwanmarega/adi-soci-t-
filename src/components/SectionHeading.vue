@@ -1,7 +1,6 @@
 <script setup lang="ts">
 withDefaults(
   defineProps<{
-    /** Optional plain label above the title; most sections do not need one. */
     eyebrow?: string
     title: string
     lead?: string
