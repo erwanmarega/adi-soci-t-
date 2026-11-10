@@ -54,7 +54,7 @@ watch(menuOpen, async (open) => {
   if (open) {
     lockScroll()
     await nextTick()
-    overlay.value?.querySelector<HTMLElement>('a[href]')?.focus()
+    if (overlay.value) overlay.value.scrollTop = 0
   } else {
     unlockScroll()
   }
@@ -62,28 +62,40 @@ watch(menuOpen, async (open) => {
 
 watch(() => route.fullPath, closeMenu)
 
+let desktopQuery: MediaQueryList | null = null
+
+function onDesktopChange(event: MediaQueryListEvent) {
+  if (event.matches) closeMenu()
+}
+
 onMounted(() => {
   onScroll()
   window.addEventListener('scroll', onScroll, { passive: true })
   window.addEventListener('keydown', onKeydown)
+  if (typeof window.matchMedia === 'function') {
+    desktopQuery = window.matchMedia('(min-width: 80rem)')
+    desktopQuery.addEventListener('change', onDesktopChange)
+  }
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', onScroll)
   window.removeEventListener('keydown', onKeydown)
+  desktopQuery?.removeEventListener('change', onDesktopChange)
   if (menuOpen.value) unlockScroll()
 })
 </script>
 
 <template>
   <header
-    class="sticky top-0 z-[60] border-b transition-[background-color,border-color,backdrop-filter] duration-500"
-    :class="[
-      scrolled && !menuOpen
-        ? 'border-line bg-paper/90 backdrop-blur-md'
-        : 'border-transparent bg-paper',
-      menuOpen ? 'text-paper' : 'text-ink',
-    ]"
+    class="sticky top-0 z-[60] border-b text-ink transition-[background-color,border-color,backdrop-filter] duration-500"
+    :class="
+      menuOpen
+        ? 'border-line bg-paper'
+        : scrolled
+          ? 'border-line bg-paper/90 backdrop-blur-md'
+          : 'border-transparent bg-paper'
+    "
   >
     <div class="shell flex h-[4.5rem] items-center justify-between gap-6 lg:h-20">
       <RouterLink to="/" class="flex items-baseline gap-4 leading-none" aria-label="ADI, retour à l’accueil">
@@ -120,7 +132,7 @@ onBeforeUnmount(() => {
         <button
           ref="burger"
           type="button"
-          class="relative flex size-11 items-center justify-center rounded-sm border border-current xl:hidden"
+          class="relative -mr-2.5 flex size-11 items-center justify-center xl:hidden"
           :aria-expanded="menuOpen"
           aria-controls="mobile-menu"
           :aria-label="menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'"
@@ -138,24 +150,57 @@ onBeforeUnmount(() => {
       v-show="menuOpen"
       id="mobile-menu"
       ref="overlay"
-      class="fixed inset-0 z-50 overflow-y-auto bg-ink text-paper xl:hidden"
+      class="mobile-menu fixed inset-x-0 top-[4.5rem] bottom-0 z-50 overflow-y-auto overscroll-contain bg-paper text-ink lg:top-20 xl:hidden"
     >
-      <nav class="shell flex min-h-full flex-col justify-between gap-10 pt-28 pb-10" aria-label="Menu mobile">
+      <nav class="shell flex min-h-full flex-col gap-10 pt-4 pb-[max(2rem,env(safe-area-inset-bottom))]" aria-label="Menu mobile">
         <ul class="flex flex-col">
-          <li v-for="item in navItems" :key="item.to" class="border-b border-paper/15">
+          <li
+            v-for="(item, index) in navItems"
+            :key="item.to"
+            class="menu-item border-b border-line"
+            :style="{ '--i': index }"
+          >
             <RouterLink
               :to="item.to"
-              class="block py-4 font-display text-[clamp(1.9rem,8vw,2.6rem)] font-medium"
+              class="mobile-link group flex min-h-14 items-center justify-between gap-4 py-3 font-display text-[1.75rem] leading-tight font-medium"
+              @click="closeMenu"
             >
-              {{ item.label }}
+              <span>{{ item.label }}</span>
+              <svg
+                class="size-5 shrink-0 text-slate transition-transform duration-300 group-hover:translate-x-1"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                aria-hidden="true"
+              >
+                <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
             </RouterLink>
           </li>
         </ul>
-        <div class="flex flex-col gap-5">
-          <RouterLink to="/contact" class="btn btn-primary w-full">Demander un devis</RouterLink>
-          <a :href="site.phoneHref" class="text-center font-display text-2xl font-medium">
-            {{ site.phoneDisplay }}
+
+        <div class="menu-item mt-auto flex flex-col gap-3" :style="{ '--i': navItems.length }">
+          <RouterLink to="/contact" class="btn btn-primary w-full" @click="closeMenu">
+            Demander un devis
+          </RouterLink>
+          <a :href="site.phoneHref" class="btn btn-ghost w-full">
+            <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+              <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1Z" stroke-linejoin="round" />
+            </svg>
+            Appeler le {{ site.phoneDisplay }}
           </a>
+          <div class="mt-3 flex items-center justify-between text-sm text-slate">
+            <span>Agencement · Décoration · Immo</span>
+            <a
+              :href="site.instagram"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="link -my-1 py-3"
+            >
+              Instagram
+            </a>
+          </div>
         </div>
       </nav>
     </div>
@@ -203,21 +248,42 @@ onBeforeUnmount(() => {
   transform: rotate(-45deg);
 }
 
+.mobile-link.router-link-active {
+  color: var(--color-accent);
+}
+.mobile-link.router-link-active svg {
+  color: currentColor;
+}
+
 .menu-enter-active,
 .menu-leave-active {
-  transition: opacity 0.35s ease;
+  transition: opacity 0.3s ease;
 }
 .menu-enter-from,
 .menu-leave-to {
   opacity: 0;
 }
+.menu-enter-active .menu-item {
+  transition:
+    opacity 0.5s var(--ease-out-expo),
+    transform 0.5s var(--ease-out-expo);
+  transition-delay: calc(var(--i, 0) * 40ms + 60ms);
+}
+.menu-enter-from .menu-item {
+  opacity: 0;
+  transform: translateY(0.75rem);
+}
 
 @media (prefers-reduced-motion: reduce) {
   .menu-enter-active,
   .menu-leave-active,
+  .menu-enter-active .menu-item,
   .burger-bar,
   .nav-link::after {
     transition: none;
+  }
+  .menu-enter-from .menu-item {
+    transform: none;
   }
 }
 </style>

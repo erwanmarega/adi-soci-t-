@@ -68,6 +68,39 @@ describe('SiteHeader mobile menu', () => {
     expect(menuVisible(w)).toBe(false)
   })
 
+  it('closes when the link of the current page is tapped', async () => {
+    const { w, router } = await mountHeader()
+    await router.push('/cuisine')
+    await flushPromises()
+    await burger(w).trigger('click')
+    await w.find('#mobile-menu a[href="/cuisine"]').trigger('click')
+    await flushPromises()
+    expect(burger(w).attributes('aria-expanded')).toBe('false')
+    expect(document.body.style.overflow).toBe('')
+  })
+
+  it('closes and unlocks scroll when the viewport reaches the desktop breakpoint', async () => {
+    const handlers: Array<(e: MediaQueryListEvent) => void> = []
+    const original = window.matchMedia
+    window.matchMedia = ((query: string) => ({
+      matches: false,
+      media: query,
+      addEventListener: (_: string, cb: (e: MediaQueryListEvent) => void) => handlers.push(cb),
+      removeEventListener: () => handlers.splice(0),
+    })) as unknown as typeof window.matchMedia
+    try {
+      const { w } = await mountHeader()
+      await burger(w).trigger('click')
+      expect(document.body.style.overflow).toBe('hidden')
+      handlers.forEach((cb) => cb({ matches: true } as MediaQueryListEvent))
+      await w.vm.$nextTick()
+      expect(burger(w).attributes('aria-expanded')).toBe('false')
+      expect(document.body.style.overflow).toBe('')
+    } finally {
+      window.matchMedia = original
+    }
+  })
+
   it('ignores Escape while closed', async () => {
     const { w } = await mountHeader()
     window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }))
