@@ -1,0 +1,142 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/cormorant-garamond';
+@import '@fontsource-variable/cormorant-garamond/wght-italic.css';
+@import '@fontsource-variable/instrument-sans';
+
+/*
+ * ADI design system.
+ * Quiet interior-design magazine: white paper, near-black ink, fine 1px rules,
+ * a serif for headings. The ADI magenta is reserved for the primary CTA, link
+ * hover/underline, focus ring and the active nav/tab state.
+ */
+@theme {
+  --font-display: 'Cormorant Garamond Variable', Georgia, serif;
+  --font-sans: 'Instrument Sans Variable', ui-sans-serif, system-ui, sans-serif;
+
+  --color-paper: #ffffff;
+  --color-paper-deep: #f4f4f2;
+  --color-ink: #11151f;
+  --color-ink-soft: #3b4252;
+  --color-slate: #5d6677;
+  --color-mist: #c4c8d0;
+  --color-accent: #cf1173;
+  --color-accent-deep: #a50c5a;
+  --color-line: rgb(17 21 31 / 0.14);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+  }
+
+  @media (max-width: 40rem) {
+    body {
+      font-size: 1rem;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.08;
+    font-variant-numeric: lining-nums;
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.05;
+  }
+  h2 {
+    font-size: clamp(1.9rem, 3.2vw, 3rem);
+  }
+  h3 {
+    font-size: clamp(1.45rem, 2vw, 1.9rem);
+    line-height: 1.15;
+  }
+
+  h1 em,
+  h2 em {
+    font-style: italic;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    @apply bg-accent text-paper;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-4 outline-accent;
+  }
+}
+
+@layer components {
+  /* Page gutter + max width used by every section. */
+  .shell {
+    @apply mx-auto w-full max-w-[88rem] px-5 sm:px-8 lg:px-14;
+  }
+
+  /* Small plain label (page category, "Nouveau" tag). No rule, no tracking. */
+  .eyebrow {
+    @apply text-sm font-medium text-slate;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm px-6 py-3.5 text-[0.95rem] font-medium transition-colors duration-300;
+  }
+  .btn-primary {
+    @apply bg-accent text-paper hover:bg-accent-deep;
+  }
+  .btn-ink {
+    @apply bg-ink text-paper hover:bg-ink-soft;
+  }
+  .btn-ghost {
+    @apply border border-ink/40 text-ink hover:border-ink hover:bg-ink hover:text-paper;
+  }
+
+  /* Text link: thin underline, magenta on hover. */
+  .link {
+    @apply underline decoration-ink/30 underline-offset-[0.35em] transition-colors duration-300 hover:text-accent hover:decoration-accent;
+  }
+}
+
+/* Scroll reveal, driven by the v-reveal directive. */
+.reveal {
+  opacity: 0;
+  transform: translateY(1rem);
+  transition:
+    opacity 0.9s var(--ease-out-expo),
+    transform 0.9s var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
